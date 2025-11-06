@@ -38,6 +38,23 @@ public class SignUpDto {
 	public void setOtpCheck(boolean otpCheck) {
 		this.otpCheck = otpCheck;
 	}
+	public SignUpDto(String name, String email, String password, String otp, boolean otpCheck) {
+		super();
+		this.name = name;
+		this.email = email;
+		this.password = password;
+		this.otp = otp;
+		this.otpCheck = otpCheck;
+	}
+	public SignUpDto() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	@Override
+	public String toString() {
+		return "SignUpDto [name=" + name + ", email=" + email + ", password=" + password + ", otp=" + otp
+				+ ", otpCheck=" + otpCheck + "]";
+	}
 	
 	
 }

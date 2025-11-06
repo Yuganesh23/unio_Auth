@@ -1,28 +1,43 @@
 package controller;
 
-import dto.LoginRequestDTO;
-import dto.LoginResponseDTO;
-import dto.SignUpDto;
-import entity.SignUpEntity;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
-import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-import serviceInterface.SignUpService;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static org.mockito.Mockito.*;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.MockitoJUnitRunner;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
-class SignUpControllerTest {
+import dto.LoginRequestDTO;
+import dto.LoginResponseDTO;
+import dto.SignUpDto;
+import entity.SignUpEntity;
+import main.SignInApplication;
+import serviceInterface.SignUpService;
+
+@RunWith(MockitoJUnitRunner.class)  // for JUnit4
+//@ExtendWith(MockitoExtension.class)
+@SpringBootTest(classes = SignInApplication.class)
+
+public class SignUpControllerTest {
 
     private MockMvc mockMvc;
 
@@ -31,10 +46,13 @@ class SignUpControllerTest {
 
     @InjectMocks
     private SignUpController signUpController;
-
-    private SignUpDto signUpDto;
-    private LoginRequestDTO loginRequestDTO;
-    private SignUpEntity signUpEntity;
+      
+    @Autowired
+     SignUpDto signUpDto;
+    @Autowired
+     LoginRequestDTO loginRequestDTO;
+    @Autowired
+     SignUpEntity signUpEntity;
 
     @BeforeEach
     void setUp() {

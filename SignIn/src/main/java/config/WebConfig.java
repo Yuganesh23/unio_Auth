@@ -15,9 +15,9 @@ public class WebConfig implements WebMvcConfigurer {
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         // Allow all origins during development (specific origins in production)
-        String frontendUrl = (environment.acceptsProfiles("prod")) ? "https://your-production-frontend.com" : "http://localhost:8081";
+   //     String frontendUrl = (environment.acceptsProfiles("prod")) ? "https://your-production-frontend.com" : "http://localhost:8081";
 
-    	registry.addMapping("/**").allowedOrigins(frontendUrl)
+    	registry.addMapping("/**").allowedOrigins("http://localhost:8081")
                 .allowedMethods("GET", "POST", "PUT", "DELETE")
                 .allowedHeaders("*")
                 .allowCredentials(true);

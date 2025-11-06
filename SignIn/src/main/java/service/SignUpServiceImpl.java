@@ -21,12 +21,18 @@ public class SignUpServiceImpl implements SignUpService {
 
     @Autowired
     SignUpRepository repo;
+
     @Autowired
     EmailService emailService;
+
     @Autowired
     PasswordEncoder passwordEncoder;
+
     @Autowired
     private JwtUtil jwtUtil;
+
+    // Temporary store for signup details pending OTP verification
+    private Map<String, SignUpDto> pendingSignUps = new HashMap<>();
 
     // ===================== SIGN UP ===================== //
 
@@ -46,6 +52,9 @@ public class SignUpServiceImpl implements SignUpService {
         tempSignUp.setPassword(details.getPassword());
         tempSignUp.setOtp(otp);
 
+        // Store temporarily for OTP verification
+        pendingSignUps.put(email, tempSignUp);
+
         emailService.sendOtpEmail(email, otp);
 
         return ResponseEntity.ok("OTP sent to your email.");
@@ -59,8 +68,11 @@ public class SignUpServiceImpl implements SignUpService {
             return ResponseEntity.badRequest().body("Invalid or expired OTP.");
         }
 
-        SignUpDto storedDetails = new SignUpDto();
-        storedDetails.setEmail(email); // Assuming the SignUpDto is populated with the email data
+        SignUpDto storedDetails = pendingSignUps.get(email);
+
+        if (storedDetails == null) {
+            return ResponseEntity.badRequest().body("No signup details found for this email.");
+        }
 
         SignUpEntity newUser = new SignUpEntity();
         newUser.setEmail(email);
@@ -68,6 +80,9 @@ public class SignUpServiceImpl implements SignUpService {
         newUser.setPassword(passwordEncoder.encode(storedDetails.getPassword()));
 
         repo.save(newUser);
+
+        // Remove from temporary storage after successful registration
+        pendingSignUps.remove(email);
 
         return ResponseEntity.ok("Registered successfully.");
     }

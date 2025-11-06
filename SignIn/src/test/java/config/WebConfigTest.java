@@ -8,10 +8,12 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.servlet.MockMvc;
 
+import main.SignInApplication;
+
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.header;
 
-@SpringBootTest
+@SpringBootTest(classes = SignInApplication.class)
 @AutoConfigureMockMvc
 public class WebConfigTest {
 
@@ -20,7 +22,9 @@ public class WebConfigTest {
 
     @Test
     void testCORSConfiguration() throws Exception {
-        mockMvc.perform(get("/api/users/1"))
-                .andExpect(header().string("Access-Control-Allow-Origin", "http://localhost:8081"));
+        mockMvc.perform(get("/api/users/1")
+                .header("Origin", "http://localhost:8081"))
+            .andExpect(header().string("Access-Control-Allow-Origin", "http://localhost:8081"));
     }
+
 }

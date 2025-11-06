@@ -14,6 +14,8 @@ public class SignUpEntity {
     private String name;
     private String email;
     private String password;
+    private String provider; 
+
 
     // Getters and setters
     public long getId() {
@@ -47,4 +49,12 @@ public class SignUpEntity {
     public void setPassword(String password) {
         this.password = password;
     }
+
+	public String getProvider() {
+		return provider;
+	}
+
+	public void setProvider(String provider) {
+		this.provider = provider;
+	}
 }

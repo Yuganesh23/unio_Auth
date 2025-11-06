@@ -9,9 +9,11 @@ C:\Users\HP\eclipse-workspace\SignIn\src\main\java\config\WebConfig.java
 C:\Users\HP\eclipse-workspace\SignIn\src\main\java\main\Main.java
 C:\Users\HP\eclipse-workspace\SignIn\src\main\java\controller\OAuth2Controller.java
 C:\Users\HP\eclipse-workspace\SignIn\src\main\java\security\JwtAuthFilter.java
+C:\Users\HP\eclipse-workspace\SignIn\src\main\java\controller\OAuth2TestController.java
 C:\Users\HP\eclipse-workspace\SignIn\src\main\java\service\EmailService.java
 C:\Users\HP\eclipse-workspace\SignIn\src\main\java\security\JwtUtil.java
 C:\Users\HP\eclipse-workspace\SignIn\src\main\java\config\SecurityConfig.java
+C:\Users\HP\eclipse-workspace\SignIn\src\main\java\controller\GoogleAuthController.java
 C:\Users\HP\eclipse-workspace\SignIn\src\main\java\repository\SignUpRepository.java
 C:\Users\HP\eclipse-workspace\SignIn\src\main\java\service\SignUpServiceImpl.java
 C:\Users\HP\eclipse-workspace\SignIn\src\main\java\dto\LoginRequestDTO.java
